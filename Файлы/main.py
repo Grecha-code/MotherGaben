@@ -52,15 +52,15 @@ if is_valid_phone(phone) and is_valid_email(email):
 
 name = input("Введите ваше имя: ")
 last_name = input("Введите вашу фамилию: ")
-gender = input("Введите ваш пол: ")
-
-with open('file.json', 'a', encoding='utf-8') as file:
-    file.write(f"Имя: {name}, Фамилия: {last_name}, Пол: {gender}\n")
+gender = input("Введите ваш пол (Мужской/Женский): ")
 
 if gender != "Мужской":
     if gender != "Женский":
         print("Вы призананы иноагентом!")
         exit()
+
+with open('file.json', 'a', encoding='utf-8') as file:
+    file.write(f"Имя: {name}, Фамилия: {last_name}, Пол: {gender}\n")
 
 try:
     year_of_birth = int(input("Введите год рождения: "))
