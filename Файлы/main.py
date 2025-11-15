@@ -30,25 +30,21 @@ print("=" * 50)
 print()
 
 print("🧑‍💻Вход в приложение")
-email = input("Введите вашу электронную почту: ")
-phone = input("Введите ваш номер телефона: ")
-def is_valid_phone(phone):
-    pattern = r"^\+?\d{10,15}$"
-    return re.match(pattern, phone) is not None
-def is_valid_email(email):
-    pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2}$"
-    return re.match(pattern, email) is not None
-
-if is_valid_phone(phone) and is_valid_email(email):
-    print("Данные корректны")
-else:
-    print("Некорректный формат данных")
-    exit()
-
-if is_valid_phone(phone) and is_valid_email(email):
-    with open('file.json', 'a', encoding='utf-8') as file:
-        file.write(f"Телефон: {phone}, Почта: {email}\n")
-    print("Данные сохранены!")
+async def message_data():
+    email = input("Введите вашу электронную почту: ")
+    phone = input("Введите ваш номер телефона: ")
+    pattern_email = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2}$"
+    pattern_phone = r"^\+?\d{10,15}$"
+    valid_email = await re.match(pattern_email, email) is not None
+    valid_phone = await re.match(pattern_phone, phone) is not None
+    if valid_email(email) and valid_phone(phone):
+        print("Данные корректны")
+        with open('file.json', 'a', encoding='utf-8') as file:
+            file.write(f"Телефон: {phone}, Почта: {email}\n")
+        print("Данные сохранены!")
+    else:
+        print("Данные не корректны")
+        exit()
 
 name = input("Введите ваше имя: ")
 last_name = input("Введите вашу фамилию: ")
